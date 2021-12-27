@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
 
+    private float delay = 1;
+
     private void OnCollisionEnter(Collision other)
     {
         switch (other.gameObject.tag)
@@ -14,15 +16,11 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case "Finish":
-                NextLevel();
-                break;
-
-            case "Fuel":
-                Debug.Log("You've recharged the fuel!");
+                FinishedLevel();
                 break;
 
             default:
-                ReloadLevel();
+                StartCrashSequence();
                 break;
         }
     }
@@ -46,4 +44,20 @@ public class CollisionHandler : MonoBehaviour
 
         SceneManager.LoadScene(nextSceneIndex);
     }
+
+    void StartCrashSequence()
+    {
+        // todo add sound effect
+        // todo add particle effect to crash
+        GetComponent<Movement>().enabled = false;
+        Invoke ("ReloadLevel", delay);
+    }
+
+    void FinishedLevel()
+    {
+        // todo add SFX
+        GetComponent<Movement>().enabled = false;
+        Invoke("NextLevel", delay);
+    }
 }
+
