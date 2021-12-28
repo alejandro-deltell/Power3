@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
 
-    private float delay = 1;
+    private float delay = 3;
     private AudioSource audioSource;
 
     public AudioClip crashAudio;
     public AudioClip finishAudio;
+
+    public ParticleSystem crashParticles;
+    public ParticleSystem finishParticles;
+
+    bool isTransitioning = false;
 
 
     void Start()
@@ -21,6 +26,11 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (isTransitioning == true)
+        {
+            return;
+        }
+
         switch (other.gameObject.tag)
         {
 
@@ -60,17 +70,26 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
-        // todo add particle effect to crash
+
+        isTransitioning = true;
+        audioSource.Stop();
         audioSource.PlayOneShot(crashAudio);
+        crashParticles.Play();
         GetComponent<Movement>().enabled = false;
-        Invoke ("ReloadLevel", delay);
+        Invoke("ReloadLevel", delay);
+
     }
 
     void FinishedLevel()
     {
+
+        isTransitioning = true;
+        audioSource.Stop();
         audioSource.PlayOneShot(finishAudio);
+        finishParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
+
     }
 }
 
