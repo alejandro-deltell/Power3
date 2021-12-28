@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea9add8fd51ec24eba6569afe45585d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crashAudio: {fileID: 0}
+  finishAudio: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2858310604020302415, guid: 19ea885296318164cbcf80ad8213df29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.1
+      value: -30.45
       objectReference: {fileID: 0}
     - target: {fileID: 2858310604020302415, guid: 19ea885296318164cbcf80ad8213df29, type: 3}
       propertyPath: m_LocalPosition.y

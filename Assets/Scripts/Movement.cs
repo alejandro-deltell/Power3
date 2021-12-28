@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
     Rigidbody rb;
-    AudioSource audios;
+    AudioSource audioSouce;
+    
     public float mainThrust = 100f;
     public float rotationSpeed = 100f;
-    
-    
+    public AudioClip mainEngine;
+
+    public bool isAlive = true;
+    public bool hasFinished = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audios = GetComponent<AudioSource>();
+        audioSouce = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,19 +34,19 @@ public class Movement : MonoBehaviour
     void ProcessThrust()
     {
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && isAlive)
         {
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
             
-            if (!audios.isPlaying)
+            if (!audioSouce.isPlaying)
             {
-                audios.Play();               
+                audioSouce.PlayOneShot(mainEngine);               
             }            
         }
 
-        else
+        else if (audioSouce.isPlaying && !hasFinished)
         {
-            audios.Stop();
+            audioSouce.Stop();
         }
 
     }

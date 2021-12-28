@@ -1,10 +1,23 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class CollisionHandler : MonoBehaviour
 {
 
     private float delay = 1;
+    private AudioSource audioSource;
+
+    public AudioClip crashAudio;
+    public AudioClip finishAudio;
+
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -47,15 +60,15 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
-        // todo add sound effect
         // todo add particle effect to crash
+        audioSource.PlayOneShot(crashAudio);
         GetComponent<Movement>().enabled = false;
         Invoke ("ReloadLevel", delay);
     }
 
     void FinishedLevel()
     {
-        // todo add SFX
+        audioSource.PlayOneShot(finishAudio);
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
     }
