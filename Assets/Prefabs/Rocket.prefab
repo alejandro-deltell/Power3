@@ -606,6 +606,7 @@ GameObject:
   - component: {fileID: 1123651}
   - component: {fileID: 1751727046}
   - component: {fileID: 8904880466903952389}
+  - component: {fileID: 2040715013}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -677,7 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainThrust: 1000
-  rotationThrust: 1
+  rotationThrust: 100
   mainEngine: {fileID: 8300000, guid: 08c53ae3b4d1e0d45942fb3f09dbab5a, type: 3}
   mainEngineParticles: {fileID: 5361827036087839407}
   leftThrusterParticles: {fileID: 7524327112573561812}
@@ -807,6 +808,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4046372, y: 1.2341158, z: 1}
   m_Center: {x: 0.028217472, y: -0.11705832, z: 0}
+--- !u!114 &2040715013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607854402712903386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b1e360e3f71c84dbe20d11363a186e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8101114455462947032
 GameObject:
   m_ObjectHideFlags: 0
