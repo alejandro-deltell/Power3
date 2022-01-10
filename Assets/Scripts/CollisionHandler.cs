@@ -15,6 +15,7 @@ public class CollisionHandler : MonoBehaviour
     public ParticleSystem finishParticles;
 
     bool isTransitioning = false;
+    bool collisionDisabled = false;
 
 
     void Start()
@@ -26,7 +27,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (isTransitioning == true)
+        if (isTransitioning == true || collisionDisabled)
         {
             return;
         }
@@ -66,6 +67,28 @@ public class CollisionHandler : MonoBehaviour
         }
 
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    private void Update()
+    {
+        Cheats();
+    }
+
+
+
+
+    void Cheats()
+    {
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            NextLevel();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled; // toggle collision
+        }
     }
 
     void StartCrashSequence()
